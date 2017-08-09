@@ -1,0 +1,70 @@
+[NotebookApp | WARNING] No nbgrader_config.py file found (rerun with --debug to see where nbgrader is looking)
+[NotebookApp | INFO] Loading the validate_assignment nbgrader serverextension
+[NotebookApp | INFO] Serving notebooks from local directory: /Users/ebarragan/Treehouse/Python/dataScience/Digital Hub/analysis
+[NotebookApp | INFO] 0 active kernels 
+[NotebookApp | INFO] The Jupyter Notebook is running at: http://localhost:8888/?token=c5ff3166893ddaf95ddfa55d63e143780550f7b5b5bebba0
+[NotebookApp | INFO] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[NotebookApp | CRITICAL] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8888/?token=c5ff3166893ddaf95ddfa55d63e143780550f7b5b5bebba0
+[NotebookApp | INFO] Accepting one-time-token-authenticated connection from ::1
+[NotebookApp | WARNING] No nbgrader_config.py file found. Rerun with DEBUG log level to see where nbgrader is looking.
+[NotebookApp | CRITICAL] Unwritable directory, please contact your instructor: /srv/nbgrader/exchange
+[NotebookApp | ERROR] Traceback (most recent call last):
+      File "/Users/ebarragan/MEGA/dev/nbgrader/nbgrader/server_extensions/assignment_list/handlers.py", line 63, in list_released_assignments
+        assignments = lister.start()
+      File "/Users/ebarragan/MEGA/dev/nbgrader/nbgrader/exchange/list.py", line 129, in start
+        super(ExchangeList, self).start()
+      File "/Users/ebarragan/MEGA/dev/nbgrader/nbgrader/exchange/exchange.py", line 122, in start
+        self.ensure_root()
+      File "/Users/ebarragan/MEGA/dev/nbgrader/nbgrader/exchange/exchange.py", line 100, in ensure_root
+        self.fail("Unwritable directory, please contact your instructor: {}".format(self.root))
+      File "/Users/ebarragan/MEGA/dev/nbgrader/nbgrader/exchange/exchange.py", line 78, in fail
+        raise ExchangeError(msg)
+    nbgrader.exchange.exchange.ExchangeError: Unwritable directory, please contact your instructor: /srv/nbgrader/exchange
+    
+[NotebookApp | INFO] Kernel started: e18e5504-5e96-46d5-a02c-99b2c1a03af1
+[NotebookApp | WARNING] 404 GET /nbextensions/widgets/notebook/js/extension.js?v=20170808113901 (::1) 9.66ms referer=http://localhost:8888/notebooks/DigitalHubInsights.ipynb
+[NotebookApp | INFO] Saving file at /DigitalHubInsights.ipynb
+[NotebookApp | INFO] Kernel shutdown: e18e5504-5e96-46d5-a02c-99b2c1a03af1
+[NotebookApp | WARNING] No nbgrader_config.py file found (rerun with --debug to see where nbgrader is looking)
+[NotebookApp | INFO] Loading the validate_assignment nbgrader serverextension
+[NotebookApp | INFO] Serving notebooks from local directory: /Users/ebarragan/Treehouse/Python/dataScience/Digital Hub/analysis
+[NotebookApp | INFO] 0 active kernels 
+[NotebookApp | INFO] The Jupyter Notebook is running at: http://localhost:8889/?token=f2bb9b2cff4407bf0b4a1176ae36110323535005d1614e78
+[NotebookApp | INFO] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[NotebookApp | CRITICAL] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8889/?token=f2bb9b2cff4407bf0b4a1176ae36110323535005d1614e78
+[NotebookApp | INFO] Accepting one-time-token-authenticated connection from ::1
+[NotebookApp | WARNING] No nbgrader_config.py file found. Rerun with DEBUG log level to see where nbgrader is looking.
+[NotebookApp | CRITICAL] Unwritable directory, please contact your instructor: /srv/nbgrader/exchange
+[NotebookApp | ERROR] Traceback (most recent call last):
+      File "/Users/ebarragan/MEGA/dev/nbgrader/nbgrader/server_extensions/assignment_list/handlers.py", line 63, in list_released_assignments
+        assignments = lister.start()
+      File "/Users/ebarragan/MEGA/dev/nbgrader/nbgrader/exchange/list.py", line 129, in start
+        super(ExchangeList, self).start()
+      File "/Users/ebarragan/MEGA/dev/nbgrader/nbgrader/exchange/exchange.py", line 122, in start
+        self.ensure_root()
+      File "/Users/ebarragan/MEGA/dev/nbgrader/nbgrader/exchange/exchange.py", line 100, in ensure_root
+        self.fail("Unwritable directory, please contact your instructor: {}".format(self.root))
+      File "/Users/ebarragan/MEGA/dev/nbgrader/nbgrader/exchange/exchange.py", line 78, in fail
+        raise ExchangeError(msg)
+    nbgrader.exchange.exchange.ExchangeError: Unwritable directory, please contact your instructor: /srv/nbgrader/exchange
+    
+[NotebookApp | INFO] Kernel started: e1b972b9-50c4-4da2-940f-94e3030a388a
+[NotebookApp | WARNING] 404 GET /nbextensions/widgets/notebook/js/extension.js?v=20170808121534 (::1) 7.27ms referer=http://localhost:8889/notebooks/DigitalHubInsights.ipynb
+[NotebookApp | INFO] Saving file at /DigitalHubInsights.ipynb
+[NotebookApp | INFO] Saving file at /DigitalHubInsights.ipynb
+[NotebookApp | INFO] Saving file at /DigitalHubInsights.ipynb
+[NotebookApp | INFO] interrupted
+[NotebookApp | CRITICAL] Shutdown confirmed
+[NotebookApp | INFO] Shutting down kernels
+[NotebookApp | INFO] Kernel shutdown: e1b972b9-50c4-4da2-940f-94e3030a388a
+[NotebookApp | INFO] interrupted
+[NotebookApp | CRITICAL] Shutdown confirmed
+[NotebookApp | INFO] Shutting down kernels

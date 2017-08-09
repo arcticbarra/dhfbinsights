@@ -1,7 +1,6 @@
 import facebookinsights as fi
 import pandas as pd
 import facebook
-import seaborn
 
 def generateCSVs(token, since, until):
     '''
@@ -43,11 +42,12 @@ def generateCSVs(token, since, until):
     pageLikesBySourcedf = pd.DataFrame()
     fansDemographicsdf = pd.DataFrame()
     fansbyAgedf = pd.DataFrame()
+    newdf = pd.DataFrame(columns=["13-17","18-24","25-34","35-44","45-54","55-64","65+"])
 
     # Data processing
     dates = []
     for i,insight in enumerate(insights):
-        dates.append(insight.end_time.strftime("%A %d, %B %Y"))
+        dates.append(insight.end_time.strftime("%d"))
 
         impressionsdf.loc[i,"Page Impressions Organic"] = insight.page_impressions_organic
         impressionsdf.loc[i,"Page Impressions Organic Unique"] = insight.page_impressions_organic_unique
@@ -89,6 +89,9 @@ def generateCSVs(token, since, until):
             i+=1
     fansByCountrydf.columns = countryCodes[2][1].ix[1:].tolist()
     fansByCountrydf = fansByCountrydf.dropna(axis=1)
+    averageFansByCountrydf = pd.DataFrame(columns=list(fansByCountrydf))
+    for column in fansByCountrydf:
+        averageFansByCountrydf.loc[0,column] = fansByCountrydf[column].sum()//len(dates)
 
     # Unlikes
     for metric in unlikes['data']:
@@ -124,21 +127,38 @@ def generateCSVs(token, since, until):
     averageFansDemographicsdf = pd.DataFrame(columns=list(fansDemographicsdf))
     for column in fansDemographicsdf:
         averageFansDemographicsdf.loc[0,column] = fansDemographicsdf[column].sum()//len(dates)
+    ageRanges = ["13-17","18-24","25-34","35-44","45-54","55-64","65+"]
+    for age in ageRanges:
+        s = 0
+        for column in averageFansDemographicsdf:
+            if column[2:] == age:
+                s+=averageFansDemographicsdf.loc[0,column]
+        newdf.loc[0,age] = s
+    newdf = newdf.join(averageFansDemographicsdf["page_fans"])
+    averageFansDemographicsdf = newdf
 
     # Index as date
     dfarray = [pageFansOnlinedf,positiveFeedbackdf,negativeFeedbackdf,impressionsdf,pageConsumptionsdf,reactionsdf,fansByCountrydf,pageLikesBySourcedf,pageUnlikesBySourcedf,fansDemographicsdf]
     for df in dfarray:
         df.index = dates
     averageFansDemographicsdf.index = ['Average']
+    averageFansByCountrydf.index = ['Average']
 
-    onlineFansaveragedf.to_csv('Datasets/pageFansOnline.csv')
-    positiveFeedbackdf.to_csv('Datasets/positiveFeedback.csv')
-    negativeFeedbackdf.to_csv('Datasets/negativeFeedback.csv')
-    impressionsdf.to_csv('Datasets/impressions.csv')
-    pageConsumptionsdf.to_csv('Datasets/pageConsumptions.csv')
-    reactionsdf.to_csv('Datasets/reactions.csv')
-    fansByCountrydf.to_csv('Datasets/fansByCountry.csv')
-    pageLikesBySourcedf.to_csv('Datasets/pageLikesBySource.csv')
-    pageUnlikesBySourcedf.to_csv('Datasets/pageUnlikesBySource.csv')
-    averageFansDemographicsdf.to_csv('Datasets/averageFansDemographics.csv')
+    # Fixing dataframes...
+    positiveFeedbackdf = positiveFeedbackdf.drop(['answer','claim','rsvp'],axis=1)
+    negativeFeedbackdf = negativeFeedbackdf.drop(['report_spam_clicks','unlike_page_clicks','xbutton_clicks'],axis=1)
+    averageFansByCountrydf = averageFansByCountrydf.transpose().sort_index()
+
+    df.to_excel('Excel_Sample.xlsx',sheet_name='Sheet1')
+
+    onlineFansaveragedf.to_csv('Datasets/'+ since.split(' ')[0] +'/pageFansOnline.csv')
+    positiveFeedbackdf.to_csv('Datasets/'+ since.split(' ')[0] +'/positiveFeedback.csv')
+    negativeFeedbackdf.to_csv('Datasets/'+ since.split(' ')[0] +'/negativeFeedback.csv')
+    impressionsdf.to_csv('Datasets/'+ since.split(' ')[0] +'/impressions.csv')
+    pageConsumptionsdf.to_csv('Datasets/'+ since.split(' ')[0] +'/pageConsumptions.csv')
+    reactionsdf.to_csv('Datasets/'+ since.split(' ')[0] +'/reactions.csv')
+    averageFansByCountrydf.to_csv('Datasets/'+ since.split(' ')[0] +'/fansByCountry.csv')
+    pageLikesBySourcedf.to_csv('Datasets/'+ since.split(' ')[0] +'/pageLikesBySource.csv')
+    pageUnlikesBySourcedf.to_csv('Datasets/'+ since.split(' ')[0] +'/pageUnlikesBySource.csv')
+    averageFansDemographicsdf.to_csv('Datasets/'+ since.split(' ')[0] +'/averageFansDemographics.csv')
     print("Datasets generated.")
